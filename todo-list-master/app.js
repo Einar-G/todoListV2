@@ -1,18 +1,21 @@
 "use strict";
 
 const TODO_STORAGE = "todo.items";
-const LIST_STORAGE = "list.items";
 
 let todos = JSON.parse(localStorage.getItem(TODO_STORAGE)) || [];
-let lists = JSON.parse(localStorage.getItem(LIST_STORAGE)) || [];
 
 let todoRoot = document.querySelector(".todo-container");
 let todoForm = document.querySelector("[data-todo-form]");
 let todoInput = document.querySelector("[data-todo-input]");
+let completedRoot = document.querySelector(".completed-root");
 
-let listsContainer= document.querySelector(".lists-container");
-let listForm = document.querySelector("[data-new-list-form]");
-let listInput = document.querySelector("[data-new-list-input]");
+ var options = {
+  year: 'numeric', month: 'numeric', day: 'numeric',
+  hour: 'numeric', minute: 'numeric', second: 'numeric',
+  hour12: false
+}
+
+let dateFormat = new Intl.DateTimeFormat("sv-SE", options);
 
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -24,48 +27,11 @@ todoForm.addEventListener("submit", (e) => {
   todoInput.value = "";
 });
 
-listForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (listInput.value.trim() === "") {
-    return;
-  }
-  lists.push(createTodo(listInput.value.trim()));
-  updateList();
-  listInput.value = null;
-  lists.push(list);
-  renderLists();
-  saveLists();
-});
-
-function renderLists( ){
-    lists.forEach(list => {
-        const listElement = document.createElement("li")
-        listElement.classList.add("list-name");
-        listElement.innerText = list.name;
-        listsContainer.appendChild(listElement);
-        listElement.dataset.listid = list.id;
-    });
-}
-
-function createList(name) {
-   return {
-    id: Date.now().toString(),
-    name: name, tasks: []
-    }; 
-}
-
-function saveLists() {
-    localStorage.setItem(JSON.stringify(lists));
-}
-
-function updateLists() {
-   saveLists();
-}
-
 function createTodo(name) {
   return {
     id: Date.now().toString(),
-    name: name
+    name: name, 
+    createdDate: dateFormat.format(new Date())
   };
 }
 
@@ -75,6 +41,7 @@ function todoList(items) {
     let todoListItem = document.createElement("li");
     todoListItem.innerText = item.name;
     todoListItem.setAttribute("data-id", item.id);
+    todoListItem.setAttribute("created-date", item.createdDate);
     todoListItem.classList.add("todo-list-item");
     todoListItem.addEventListener("click", removeItem);
     list.append(todoListItem);
@@ -84,8 +51,25 @@ function todoList(items) {
 
 function removeItem(event) {
   let itemToRemove = event.target.getAttribute("data-id");
+  let completedName = event.target.innerText;
+  let createdDate = event.target.getAttribute("created-date");
   todos = todos.filter((item) => item.id !== itemToRemove);
   updateTodo();
+  updateCompletedItem(completedName, createdDate);
+}
+
+function updateCompletedItem(completedName, createdDate) {
+  let completedRow = document.createElement("tr");
+  completedRoot.append(completedRow);
+  let itemText = document.createElement("td");
+  completedRow.append(itemText);
+  itemText.innerText = completedName;
+  let itemCreated = document.createElement("td");
+  completedRow.append(itemCreated);
+  itemCreated.innerText = createdDate;
+  let itemCompleted = document.createElement("td");
+  itemCompleted.innerText = dateFormat.format(new Date());
+  completedRow.append(itemCompleted);  
 }
 
 function updateTodo() {
@@ -98,5 +82,4 @@ function saveTodo() {
   localStorage.setItem(TODO_STORAGE, JSON.stringify(todos));
 }
 
-renderLists();
 updateTodo();

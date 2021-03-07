@@ -12,28 +12,29 @@
 </head>
 <body>
     <header>
-        <h1>Einars to-do listor</h1>      
+        <a href="index.html" class="header-text">Einars to-do listor</a>
     </header>
     <main>
-        <section id="lists-root"  lists-container>
-            <form action="" data-new-list-form>
-                <input type="text" data-new-list-input placeholder="new list">
-                <button>
-                    <i class="fas fa-plus-square"></i>
-                </button>
-            </form>
-            <div class="lists-container"></div>
-        </section>
-    <h1>test</h1>
-
         <section id="todo-root">     
             <form data-todo-form>
-                <input type="text" data-todo-input placeholder="to do" />
+                <input type="text" data-todo-input placeholder="Uppgift" maxlength="20" />
                 <button>
                     <i class="fas fa-plus-square"></i>
                 </button>
             </form>
             <div class="todo-container"></div>
+        </section>
+        <section class="todo-log">
+            <h1 class="log-rubrik">Färdiga Uppgifter</h1>
+            <table>
+                <tbody class="completed-root">
+                    <tr>
+                        <th>Uppgift</th>
+                        <th>Skapad</th>
+                        <th>Färdig</th>
+                    </tr>
+                </tbody>              
+            </table>
         </section>      
     </main>
     <script src="app.js"></script>
@@ -43,5 +44,4 @@
         <a href="policy.html" class="footerText">Integritetspolicy</a>        
     </footer>   
 </body>
-
 </html>
