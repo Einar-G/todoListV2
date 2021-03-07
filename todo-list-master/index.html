@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" 
+     crossorigin="anonymous" />  
+    <title>Einars to-do listor</title>
+</head>
+<body>
+    <header>
+        <h1>Einars to-do listor</h1>      
+    </header>
+    <main>
+        <section id="lists-root"  lists-container>
+            <form action="" data-new-list-form>
+                <input type="text" data-new-list-input placeholder="new list">
+                <button>
+                    <i class="fas fa-plus-square"></i>
+                </button>
+            </form>
+            <div class="lists-container"></div>
+        </section>
+
+
+        <section id="todo-root">     
+            <form data-todo-form>
+                <input type="text" data-todo-input placeholder="to do" />
+                <button>
+                    <i class="fas fa-plus-square"></i>
+                </button>
+            </form>
+            <div class="todo-container"></div>
+        </section>      
+    </main>
+    <script src="app.js"></script>
+    <footer>
+        <a href="about.html" class="footerText">Om oss</a>
+        <h2 class="footerText">  Einars to-do listor ©</a>
+        <a href="policy.html" class="footerText">Integritetspolicy</a>        
+    </footer>   
+</body>
+
+</html>
