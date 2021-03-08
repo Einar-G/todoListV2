@@ -16,7 +16,7 @@ body {
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 header {
@@ -124,7 +124,7 @@ li:hover {
 }
 
 .todo-log {
-  width:30vw;
+  width:50vw;
   background-color: rgba(255, 255, 255, 0.0);
   color:rgba(255, 255, 255, 0.897);
   display:flex;
@@ -137,7 +137,8 @@ li:hover {
   border:rgba(255, 255, 255, 0.048) solid 0.3vh;
   padding:1vh;
   font-size:1.5vh;
-  position: fixed;
+  justify-self: flex-end;
+  margin: 1vh auto;
 }
 
 .log-rubrik {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Todo lista">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" 
@@ -16,11 +17,11 @@
     </header>
     <main>
         <section id="todo-root">     
-            <form data-todo-form alt="form-todo">
-                <input type="text" data-todo-input placeholder="Uppgift" maxlength="20" />
-                <button >
+            <form aria-label="form-todo" data-todo-form>
+                <input type="text" data-todo-input placeholder="Uppgift" maxlength="20" aria-label="write-todo" />
+                <button aria-label="todo-submit-button">
                     <i class="fas fa-plus-square"></i>
-                </button alt="todo-submit-button">
+                </button >
             </form>
             <div class="todo-container"></div>
         </section>
